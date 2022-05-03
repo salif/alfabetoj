@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Esperanto alphabet converter</title>
+	<title data-trl="10001">Esperanto alphabet converter</title>
 	<meta name="robots" content="index, follow" />
 	<meta name="description" content="Esperanto alphabet converter" />
 	<meta name="author" content="Salif Mehmed" />
@@ -20,47 +20,60 @@
 		crossorigin="anonymous"></script>
 	<script src="./converter.js"></script>
 	<script src="./script.js"></script>
+	<script src="./locale.js"></script>
 </head>
 
 <body>
 	<div class="container">
 		<div class="p-4 p-sm-5">
-			<h2>Esperanto alphabet converter</h2>
+			<h2 data-trl="10001">Esperanto alphabet converter</h2>
 		</div>
 		<div class="mb-3">
-			<textarea class="form-control" rows="10" id="input" placeholder="Input"></textarea>
+			<textarea class="form-control" rows="10" id="input" data-trl="30001" placeholder="Input"></textarea>
 		</div>
 		<div class="row mb-3">
 			<div class="col-auto mb-3">
-				<div class="btn-" role="group">
+				<div>
 					<input type="radio" class="btn-check" id="EsperantoToCyrillic" name="langn" checked="checked" />
-					<label class="btn btn-outline-success" for="EsperantoToCyrillic">Esperanto &rarr; Cyrillic</label>
+					<label class="btn btn-outline-success" for="EsperantoToCyrillic" data-trl="10002">Esperanto &rarr;
+						Cyrillic</label>
 					<input type="radio" class="btn-check" id="EsperantoToBulgarian" name="langn" />
-					<label class="btn btn-outline-success" for="EsperantoToBulgarian">Esperanto &rarr; Bulgarian</label>
+					<label class="btn btn-outline-success" for="EsperantoToBulgarian" data-trl="10003">Esperanto &rarr;
+						Bulgarian</label>
 					<input type="radio" class="btn-check" id="EsperantoToShavian" name="langn" />
-					<label class="btn btn-outline-success" for="EsperantoToShavian">Esperanto &rarr; Shavian</label>
+					<label class="btn btn-outline-success" for="EsperantoToShavian" data-trl="10004">Esperanto &rarr;
+						Shavian</label>
 					<input type="radio" class="btn-check" id="EsperantoToXSystem" name="langn" />
-					<label class="btn btn-outline-success" for="EsperantoToXSystem">Esperanto &rarr; x-system</label>
+					<label class="btn btn-outline-success" for="EsperantoToXSystem" data-trl="10005">Esperanto &rarr;
+						x-system</label>
 					<input type="radio" class="btn-check" id="XSystemToEsperanto" name="langn" />
-					<label class="btn btn-outline-success" for="XSystemToEsperanto">x-system &rarr; Esperanto</label>
+					<label class="btn btn-outline-success" for="XSystemToEsperanto" data-trl="10006">x-system &rarr;
+						Esperanto</label>
 					<input type="radio" class="btn-check" id="ShavianToEsperanto" name="langn" />
-					<label class="btn btn-outline-success" for="ShavianToEsperanto">Shavian &rarr; Esperanto</label>
+					<label class="btn btn-outline-success" for="ShavianToEsperanto" data-trl="10007">Shavian &rarr;
+						Esperanto</label>
 					<input type="radio" class="btn-check" id="ShavianToCyrillic" name="langn" />
-					<label class="btn btn-outline-success" for="ShavianToCyrillic">Shavian &rarr; Cyrillic</label>
+					<label class="btn btn-outline-success" for="ShavianToCyrillic" data-trl="10008">Shavian &rarr;
+						Cyrillic</label>
 					<input type="radio" class="btn-check" id="CyrillicToEsperanto" name="langn" />
-					<label class="btn btn-outline-success" for="CyrillicToEsperanto">Cyrillic &rarr; Esperanto</label>
+					<label class="btn btn-outline-success" for="CyrillicToEsperanto" data-trl="10009">Cyrillic &rarr;
+						Esperanto</label>
 					<input type="radio" class="btn-check" id="CyrillicToShavian" name="langn" />
-					<label class="btn btn-outline-success" for="CyrillicToShavian">Cyrillic &rarr; Shavian</label>
+					<label class="btn btn-outline-success" for="CyrillicToShavian" data-trl="10010">Cyrillic &rarr;
+						Shavian</label>
 					<input type="radio" class="btn-check" id="BulgarianToEsperanto" name="langn" />
-					<label class="btn btn-outline-success" for="BulgarianToEsperanto">Bulgarian &rarr; Esperanto</label>
+					<label class="btn btn-outline-success" for="BulgarianToEsperanto" data-trl="10011">Bulgarian &rarr;
+						Esperanto</label>
 					<input type="radio" class="btn-check" id="BulgarianToShavian" name="langn" />
-					<label class="btn btn-outline-success" for="BulgarianToShavian">Bulgarian &rarr; Shavian</label>
+					<label class="btn btn-outline-success" for="BulgarianToShavian" data-trl="10012">Bulgarian &rarr;
+						Shavian</label>
 				</div>
 			</div>
 			<div class="col col-auto mb-3">
-				<input type="button" class="btn btn-success" id="convert" value="Convert" />
-				<input type="button" class="btn btn-danger" id="clear" value="Clear" />
-				<a class="btn btn-primary" href="https://github.com/salif/alfabetoj" role="button">GitHub</a>
+				<input type="button" class="btn btn-success" id="convert" data-trl="20001" value="convert" />
+				<input type="button" class="btn btn-danger" id="clear" data-trl="20002" value="clear" />
+				<a class="btn btn-primary" href="https://github.com/salif/alfabetoj" data-trl="10013"
+					role="button">code</a>
 			</div>
 		</div>
 		<div class="mb-3 mb-3">

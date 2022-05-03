@@ -68,4 +68,56 @@ window.onload = function () {
 		inputEl.value = ""
 		outputEl.value = ""
 	}
+
+	function Trln(alangs, clang, slangs) {
+		for (let i = 0; i < alangs.length; i++) {
+			const lang = alangs[i]
+			if (lang === clang) {
+				return { n: true }
+			} else if (slangs.indexOf(lang) > -1) {
+				return { n: false, l: lang }
+			}
+		}
+		return { n: true }
+	}
+
+	function trl(w, l) {
+		const trlw = TrlData[w]
+		if (trlw == undefined) {
+			return { p: false }
+		}
+		const trle = trlw[l]
+		if (trle == undefined) {
+			return { p: false }
+		} else {
+			return { p: true, t: trle }
+		}
+	}
+
+	try {
+		const r = Trln(navigator.languages, "en", TrlLanguages)
+		if (r.n) {
+			return
+		}
+		document.querySelectorAll("[data-trl]").forEach(e => {
+			const t = e.getAttribute('data-trl')
+			if (t.charAt(0) == "1") {
+				const p = trl(t, r.l)
+				if (p.p === true) {
+					e.innerText = p.t
+				}
+			} else if (t.charAt(0) == "2") {
+				const p = trl(t, r.l)
+				if (p.p === true) {
+					e.value = p.t
+				}
+			} else if (t.charAt(0) == "3") {
+				const p = trl(t, r.l)
+				if (p.p === true) {
+					e.placeholder = p.t
+				}
+			}
+		})
+		document.documentElement.lang = r.l
+	} catch (err) { }
 }
