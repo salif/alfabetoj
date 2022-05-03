@@ -3,15 +3,23 @@
 	"name": "Esperanto alphabet converter",
 	"icons": [
 		{
-			"src": "/favicon.ico",
-			"type": "image/x-icon",
-			"sizes": "16x16"
+			"src": "/alfabetoj/favicon-96x96.png",
+			"sizes": "96x96",
+			"type": "image/png",
+			"density": "2.0"
+		},
+		{
+			"src": "/alfabetoj/android-icon-144x144.png",
+			"sizes": "144x144",
+			"type": "image/png",
+			"density": "3.0"
 		}
 	],
-	"start_url": "/index.html",
+	"start_url": "./index.html",
 	"background_color": "#FFFFFF",
 	"display": "standalone",
-	"scope": "/",
+	"scope": "/alfabetoj/",
 	"theme_color": "#FFFFFF",
+	"dir": "ltr",
 	"description": "Esperanto alphabet converter"
 }
