@@ -6,6 +6,8 @@ window.onload = function () {
 	const EsperantoToCyrillicEl = document.getElementById("EsperantoToCyrillic")
 	const EsperantoToBulgarianEl = document.getElementById("EsperantoToBulgarian")
 	const EsperantoToShavianEl = document.getElementById("EsperantoToShavian")
+	const EsperantoToXSystemEl = document.getElementById("EsperantoToXSystem")
+	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
 	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
 	const ShavianToCyrillicEl = document.getElementById("ShavianToCyrillic")
 	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
@@ -38,6 +40,11 @@ window.onload = function () {
 			cm = converter.d.EsperantoToBulgarian
 		} else if (EsperantoToShavianEl.checked) {
 			cm = converter.d.EsperantoToShavian
+		} else if (EsperantoToXSystemEl.checked) {
+			cm = converter.d.EsperantoToXSystem
+		} else if (XSystemToEsperantoEl.checked) {
+			cm = converter.d.XSystemToEsperanto
+			r = true
 		} else if (ShavianToEsperantoEl.checked) {
 			cm = converter.d.ShavianToEsperanto
 			r = true

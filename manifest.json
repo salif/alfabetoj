@@ -1,0 +1,17 @@
+{
+	"short_name": "alfabetoj",
+	"name": "Esperanto alphabet converter",
+	"icons": [
+		{
+			"src": "/favicon.ico",
+			"type": "image/x-icon",
+			"sizes": "16x16"
+		}
+	],
+	"start_url": "/index.html",
+	"background_color": "#FFFFFF",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#FFFFFF",
+	"description": "Esperanto alphabet converter"
+}
