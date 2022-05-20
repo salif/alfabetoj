@@ -3,17 +3,18 @@ window.onload = function () {
 	const clearEl = document.getElementById("clear")
 	const inputEl = document.getElementById("input")
 	const outputEl = document.getElementById("output")
+
 	const EsperantoToCyrillicEl = document.getElementById("EsperantoToCyrillic")
-	const EsperantoToBulgarianEl = document.getElementById("EsperantoToBulgarian")
 	const EsperantoToShavianEl = document.getElementById("EsperantoToShavian")
 	const EsperantoToXSystemEl = document.getElementById("EsperantoToXSystem")
-	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
-	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
-	const ShavianToCyrillicEl = document.getElementById("ShavianToCyrillic")
-	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
+	const EsperantoToArabicEl = document.getElementById("EsperantoToArabic")
 	const CyrillicToShavianEl = document.getElementById("CyrillicToShavian")
-	const BulgarianToEsperantoEl = document.getElementById("BulgarianToEsperanto")
-	const BulgarianToShavianEl = document.getElementById("BulgarianToShavian")
+
+	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
+	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
+	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
+	const ArabicToEsperantoEl = document.getElementById("ArabicToEsperanto")
+	const ShavianToCyrillicEl = document.getElementById("ShavianToCyrillic")
 
 	function checkVisible(elm) {
 		const rect = elm.getBoundingClientRect()
@@ -35,30 +36,29 @@ window.onload = function () {
 		}
 		let cm = "", r = false
 		if (EsperantoToCyrillicEl.checked) {
-			cm = converter.d.EsperantoToCyrillic
-		} else if (EsperantoToBulgarianEl.checked) {
-			cm = converter.d.EsperantoToBulgarian
+			cm = converter.d.Esperanto_Cyrillic
+		} else if (EsperantoToArabicEl.checked) {
+			cm = converter.d.Esperanto_Arabic
 		} else if (EsperantoToShavianEl.checked) {
-			cm = converter.d.EsperantoToShavian
+			cm = converter.d.Esperanto_Shavian
 		} else if (EsperantoToXSystemEl.checked) {
-			cm = converter.d.EsperantoToXSystem
+			cm = converter.d.Esperanto_XSystem
 		} else if (XSystemToEsperantoEl.checked) {
-			cm = converter.d.XSystemToEsperanto
+			cm = converter.d.XSystem_Esperanto
 			r = true
 		} else if (ShavianToEsperantoEl.checked) {
-			cm = converter.d.ShavianToEsperanto
+			cm = converter.d.Shavian_Esperanto
 			r = true
 		} else if (ShavianToCyrillicEl.checked) {
-			cm = converter.d.ShavianToCyrillic
+			cm = converter.d.Shavian_Cyrillic
 			r = true
 		} else if (CyrillicToEsperantoEl.checked) {
-			cm = converter.d.CyrillicToEsperanto
+			cm = converter.d.Cyrillic_Esperanto
 		} else if (CyrillicToShavianEl.checked) {
-			cm = converter.d.CyrillicToShavian
-		} else if (BulgarianToEsperantoEl.checked) {
-			cm = converter.d.BulgarianToEsperanto
-		} else if (BulgarianToShavianEl.checked) {
-			cm = converter.d.BulgarianToShavian
+			cm = converter.d.Cyrillic_Shavian
+		} else if (ArabicToEsperantoEl.checked) {
+			cm = converter.d.Arabic_Esperanto
+			r = true
 		}
 		outputEl.value = converter.convert(input, cm, r)
 		scrollToOutput()

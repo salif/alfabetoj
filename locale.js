@@ -16,9 +16,9 @@ var TrlData = {
 		"eo": "Esperanto → Cirila",
 	},
 	"10003": {
-		"en": "Esperanto → Bulgarian",
-		"bg": "есперанто → български",
-		"eo": "Esperanto → Bulgara",
+		"en": "Esperanto → Arabic",
+		"bg": "есперанто → арабски",
+		"eo": "Esperanto → Araba",
 	},
 	"10004": {
 		"en": "Esperanto → Shavian",
@@ -56,14 +56,9 @@ var TrlData = {
 		"eo": "Cirila → Ŝava",
 	},
 	"10011": {
-		"en": "Bulgarian → Esperanto",
-		"bg": "български → есперанто",
-		"eo": "Bulgara → Esperanto",
-	},
-	"10012": {
-		"en": "Bulgarian → Shavian",
-		"bg": "български → шавиански",
-		"eo": "Bulgara → Ŝava",
+		"en": "Arabic → Esperanto",
+		"bg": "арабски → есперанто",
+		"eo": "Araba → Esperanto",
 	},
 	"20001": {
 		"en": "convert",
