@@ -40,25 +40,30 @@ var TrlData = {
 		"bg": "шавиански → есперанто",
 		"eo": "Ŝava → Esperanto",
 	},
-	"10008": {
-		"en": "Shavian → Cyrillic",
-		"bg": "шавиански → кирилица",
-		"eo": "Ŝava → Cirila",
-	},
 	"10009": {
 		"en": "Cyrillic → Esperanto",
 		"bg": "кирилица → есперанто",
 		"eo": "Cirila → Esperanto",
 	},
-	"10010": {
-		"en": "Cyrillic → Shavian",
-		"bg": "кирилица → шавиански",
-		"eo": "Cirila → Ŝava",
-	},
 	"10011": {
 		"en": "Arabic → Esperanto",
 		"bg": "арабски → есперанто",
 		"eo": "Araba → Esperanto",
+	},
+	"10012": {
+		"en": "Esperanto → Cyrillic K",
+		"bg": "есперанто → кирилица к",
+		"eo": "Esperanto → Cirila К",
+	},
+	"10013": {
+		"en": "code",
+		"bg": "код",
+		"eo": "fontkodo",
+	},
+	"10014": {
+		"en": "Cyrillic K → Esperanto",
+		"bg": "кирилица к → есперанто",
+		"eo": "Cirila K → Esperanto",
 	},
 	"20001": {
 		"en": "convert",
@@ -69,10 +74,5 @@ var TrlData = {
 		"en": "clear",
 		"bg": "изчисти",
 		"eo": "purigi",
-	},
-	"10013": {
-		"en": "code",
-		"bg": "код",
-		"eo": "fontkodo",
 	},
 }

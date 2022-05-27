@@ -5,12 +5,14 @@ window.onload = function () {
 	const outputEl = document.getElementById("output")
 
 	const EsperantoToCyrillicEl = document.getElementById("EsperantoToCyrillic")
+	const EsperantoToCyrillicKEl = document.getElementById("EsperantoToCyrillicK")
 	const EsperantoToShavianEl = document.getElementById("EsperantoToShavian")
 	const EsperantoToXSystemEl = document.getElementById("EsperantoToXSystem")
 	const EsperantoToArabicEl = document.getElementById("EsperantoToArabic")
 	const CyrillicToShavianEl = document.getElementById("CyrillicToShavian")
 
 	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
+	const CyrillicKToEsperantoEl = document.getElementById("CyrillicKToEsperanto")
 	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
 	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
 	const ArabicToEsperantoEl = document.getElementById("ArabicToEsperanto")
@@ -28,15 +30,17 @@ window.onload = function () {
 		}
 	}
 
-	convertEl.onclick = function () {
+	function convert_t() {
 		let input = inputEl.value
 		if (input.length == 0) {
 			inputEl.focus()
 			return
 		}
-		let cm = "", r = false
+		let cm = {}, r = false
 		if (EsperantoToCyrillicEl.checked) {
 			cm = converter.d.Esperanto_Cyrillic
+		} if (EsperantoToCyrillicKEl.checked) {
+			cm = converter.d.Esperanto_CyrillicK
 		} else if (EsperantoToArabicEl.checked) {
 			cm = converter.d.Esperanto_Arabic
 		} else if (EsperantoToShavianEl.checked) {
@@ -49,13 +53,10 @@ window.onload = function () {
 		} else if (ShavianToEsperantoEl.checked) {
 			cm = converter.d.Shavian_Esperanto
 			r = true
-		} else if (ShavianToCyrillicEl.checked) {
-			cm = converter.d.Shavian_Cyrillic
-			r = true
 		} else if (CyrillicToEsperantoEl.checked) {
 			cm = converter.d.Cyrillic_Esperanto
-		} else if (CyrillicToShavianEl.checked) {
-			cm = converter.d.Cyrillic_Shavian
+		} else if (CyrillicKToEsperantoEl.checked) {
+			cm = converter.d.CyrillicK_Esperanto
 		} else if (ArabicToEsperantoEl.checked) {
 			cm = converter.d.Arabic_Esperanto
 			r = true
@@ -64,10 +65,14 @@ window.onload = function () {
 		scrollToOutput()
 	}
 
-	clearEl.onclick = function () {
+	convertEl.onclick = convert_t
+
+	function clear_t() {
 		inputEl.value = ""
 		outputEl.value = ""
 	}
+
+	clearEl.onclick = clear_t
 
 	function Trln(alangs, clang, slangs) {
 		for (let i = 0; i < alangs.length; i++) {
@@ -94,30 +99,47 @@ window.onload = function () {
 		}
 	}
 
-	try {
-		const r = Trln(navigator.languages, "en", TrlLanguages)
-		if (r.n) {
-			return
+	window.trle = function (w, l) {
+		const trlw = TrlData[w]
+		if (trlw == undefined) {
+			return { p: false }
 		}
+		const trle = trlw["eo"]
+		if (trle == undefined) {
+			return { p: false }
+		} else {
+			return { p: true, t: converter.convert(trle, l) }
+		}
+	}
+
+	window.localize = function (rl, trlc) {
 		document.querySelectorAll("[data-trl]").forEach(e => {
 			const t = e.getAttribute('data-trl')
 			if (t.charAt(0) == "1") {
-				const p = trl(t, r.l)
+				const p = trlc(t, rl)
 				if (p.p === true) {
 					e.innerText = p.t
 				}
 			} else if (t.charAt(0) == "2") {
-				const p = trl(t, r.l)
+				const p = trlc(t, rl)
 				if (p.p === true) {
 					e.value = p.t
 				}
 			} else if (t.charAt(0) == "3") {
-				const p = trl(t, r.l)
+				const p = trlc(t, rl)
 				if (p.p === true) {
 					e.placeholder = p.t
 				}
 			}
 		})
+	}
+
+	try {
+		const r = Trln(navigator.languages, "en", TrlLanguages)
+		if (r.n) {
+			return
+		}
+		localize(r.l, trl)
 		document.documentElement.lang = r.l
 	} catch (err) { }
 }
