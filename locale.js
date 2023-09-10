@@ -51,9 +51,9 @@ var TrlData = {
 		"eo": "Araba → Esperanto",
 	},
 	"10012": {
-		"en": "Esperanto → Cyrillic K",
-		"bg": "есперанто → кирилица к",
-		"eo": "Esperanto → Cirila К",
+		"en": "Esperanto → Cyrillic 2",
+		"bg": "есперанто → кирилица 2",
+		"eo": "Esperanto → Cirila 2",
 	},
 	"10013": {
 		"en": "code",
@@ -61,9 +61,9 @@ var TrlData = {
 		"eo": "fontkodo",
 	},
 	"10014": {
-		"en": "Cyrillic K → Esperanto",
-		"bg": "кирилица к → есперанто",
-		"eo": "Cirila K → Esperanto",
+		"en": "Cyrillic 2 → Esperanto",
+		"bg": "кирилица 2 → есперанто",
+		"eo": "Cirila 2 → Esperanto",
 	},
 	"20001": {
 		"en": "convert",

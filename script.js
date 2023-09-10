@@ -5,18 +5,16 @@ window.onload = function () {
 	const outputEl = document.getElementById("output")
 
 	const EsperantoToCyrillicEl = document.getElementById("EsperantoToCyrillic")
-	const EsperantoToCyrillicKEl = document.getElementById("EsperantoToCyrillicK")
+	const EsperantoToCyrillic2El = document.getElementById("EsperantoToCyrillic2")
 	const EsperantoToShavianEl = document.getElementById("EsperantoToShavian")
 	const EsperantoToXSystemEl = document.getElementById("EsperantoToXSystem")
 	const EsperantoToArabicEl = document.getElementById("EsperantoToArabic")
-	const CyrillicToShavianEl = document.getElementById("CyrillicToShavian")
 
 	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
-	const CyrillicKToEsperantoEl = document.getElementById("CyrillicKToEsperanto")
+	const Cyrillic2ToEsperantoEl = document.getElementById("Cyrillic2ToEsperanto")
 	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
 	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
 	const ArabicToEsperantoEl = document.getElementById("ArabicToEsperanto")
-	const ShavianToCyrillicEl = document.getElementById("ShavianToCyrillic")
 
 	function checkVisible(elm) {
 		const rect = elm.getBoundingClientRect()
@@ -39,8 +37,8 @@ window.onload = function () {
 		let cm = {}, r = false
 		if (EsperantoToCyrillicEl.checked) {
 			cm = converter.d.Esperanto_Cyrillic
-		} if (EsperantoToCyrillicKEl.checked) {
-			cm = converter.d.Esperanto_CyrillicK
+		} else if (EsperantoToCyrillic2El.checked) {
+			cm = converter.d.Esperanto_Cyrillic2
 		} else if (EsperantoToArabicEl.checked) {
 			cm = converter.d.Esperanto_Arabic
 		} else if (EsperantoToShavianEl.checked) {
@@ -55,8 +53,8 @@ window.onload = function () {
 			r = true
 		} else if (CyrillicToEsperantoEl.checked) {
 			cm = converter.d.Cyrillic_Esperanto
-		} else if (CyrillicKToEsperantoEl.checked) {
-			cm = converter.d.CyrillicK_Esperanto
+		} else if (Cyrillic2ToEsperantoEl.checked) {
+			cm = converter.d.Cyrillic2_Esperanto
 		} else if (ArabicToEsperantoEl.checked) {
 			cm = converter.d.Arabic_Esperanto
 			r = true
@@ -74,72 +72,51 @@ window.onload = function () {
 
 	clearEl.onclick = clear_t
 
-	function Trln(alangs, clang, slangs) {
-		for (let i = 0; i < alangs.length; i++) {
-			const lang = alangs[i]
-			if (lang === clang) {
-				return { n: true }
-			} else if (slangs.indexOf(lang) > -1) {
-				return { n: false, l: lang }
+	function check_trl(userlangs, currentlang, trllangs) {
+		for (let i = 0; i < userlangs.length; i++) {
+			const userlang = userlangs[i]
+			if (userlang === currentlang) {
+				return { no_change: true }
+			} else if (trllangs.indexOf(userlang) > -1) {
+				return { no_change: false, lang: userlang }
 			}
 		}
-		return { n: true }
+		return { no_change: true }
 	}
 
-	function trl(w, l) {
-		const trlw = TrlData[w]
-		if (trlw == undefined) {
-			return { p: false }
+	function my_translate(ekey, nlang) {
+		const enkey = TrlData[ekey]
+		if (enkey == undefined) {
+			return { ok: false }
 		}
-		const trle = trlw[l]
-		if (trle == undefined) {
-			return { p: false }
-		} else {
-			return { p: true, t: trle }
-		}
+		const nvalue = enkey[nlang]
+		return (nvalue == undefined) ? { ok: false } : { ok: true, new_value: nvalue }
 	}
 
-	window.trle = function (w, l) {
-		const trlw = TrlData[w]
-		if (trlw == undefined) {
-			return { p: false }
-		}
-		const trle = trlw["eo"]
-		if (trle == undefined) {
-			return { p: false }
-		} else {
-			return { p: true, t: converter.convert(trle, l) }
-		}
-	}
-
-	window.localize = function (rl, trlc) {
-		document.querySelectorAll("[data-trl]").forEach(e => {
-			const t = e.getAttribute('data-trl')
-			if (t.charAt(0) == "1") {
-				const p = trlc(t, rl)
-				if (p.p === true) {
-					e.innerText = p.t
-				}
-			} else if (t.charAt(0) == "2") {
-				const p = trlc(t, rl)
-				if (p.p === true) {
-					e.value = p.t
-				}
-			} else if (t.charAt(0) == "3") {
-				const p = trlc(t, rl)
-				if (p.p === true) {
-					e.placeholder = p.t
-				}
+	window.localize = function (nlang) {
+		document.querySelectorAll("[data-trl]").forEach(el => {
+			const el_attr = el.getAttribute('data-trl')
+			let p = {}
+			switch (el_attr.charAt(0)) {
+				case "1":
+					p = my_translate(el_attr, nlang)
+					if (p.ok === true) el.innerText = p.new_value
+				break
+				case "2":
+					p = my_translate(el_attr, nlang)
+					if (p.ok === true) el.value = p.new_value
+				break
+				case "3":
+					p = my_translate(el_attr, nlang)
+					if (p.ok === true) el.placeholder = p.new_value
+				break
 			}
 		})
+		document.documentElement.lang = nlang
 	}
 
 	try {
-		const r = Trln(navigator.languages, "en", TrlLanguages)
-		if (r.n) {
-			return
-		}
-		localize(r.l, trl)
-		document.documentElement.lang = r.l
+		const trl_checked = check_trl(navigator.languages, "en", TrlLanguages)
+		if (!trl_checked.no_change) localize(trl_checked.lang)
 	} catch (err) { }
 }
