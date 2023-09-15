@@ -5,9 +5,10 @@
 * Homepage: [salif.github.io/alfabetoj](https://salif.github.io/alfabetoj/)
 * Source code: [github.com/salif/alfabetoj](https://github.com/salif/alfabetoj)
 * Source code: [codeberg.org/salif/alfabetoj](https://codeberg.org/salif/alfabetoj)
-* Issues \(Github\): [github.com/salif/alfabetoj/issues](https://github.com/salif/alfabetoj/issues)
-* Issues \(Codeberg\): [codeberg.org/salif/alfabetoj/issues](https://codeberg.org/salif/alfabetoj/issues)
-* Element/Matrix chat: [#salif-alfabetoj:mozilla.org](https://matrix.to/#/#salif-alfabetoj:mozilla.org)
+* Issues (Github): [github.com/salif/alfabetoj/issues](https://github.com/salif/alfabetoj/issues)
+* Issues (Codeberg): [codeberg.org/salif/alfabetoj/issues](https://codeberg.org/salif/alfabetoj/issues)
+* Discuss (Github): [github.com/salif/alfabetoj/discussions](https://github.com/salif/alfabetoj/discussions)
+* Chat (Element/Matrix): [#salif-alfabetoj:mozilla.org](https://matrix.to/#/#salif-alfabetoj:mozilla.org)
 
 ## Contributing
 
