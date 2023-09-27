@@ -1,80 +1,80 @@
 window.onload = function () {
-	const convertEl = document.getElementById("convert")
-	const clearEl = document.getElementById("clear")
-	const inputEl = document.getElementById("input")
-	const outputEl = document.getElementById("output")
+	var el_convert = document.getElementById("convert")
+	var el_clear = document.getElementById("clear")
+	var el_input = document.getElementById("input")
+	var el_output = document.getElementById("output")
 
-	const EsperantoToCyrillicEl = document.getElementById("EsperantoToCyrillic")
-	const EsperantoToCyrillic2El = document.getElementById("EsperantoToCyrillic2")
-	const EsperantoToShavianEl = document.getElementById("EsperantoToShavian")
-	const EsperantoToXSystemEl = document.getElementById("EsperantoToXSystem")
-	const EsperantoToArabicEl = document.getElementById("EsperantoToArabic")
+	var el_esperanto_to_cyrillic = document.getElementById("EsperantoToCyrillic")
+	var el_esperanto_to_cyrillic_2 = document.getElementById("EsperantoToCyrillic2")
+	var el_esperanto_to_shavian = document.getElementById("EsperantoToShavian")
+	var el_esperanto_to_x_system = document.getElementById("EsperantoToXSystem")
+	var el_esperanto_to_arabic = document.getElementById("EsperantoToArabic")
 
-	const CyrillicToEsperantoEl = document.getElementById("CyrillicToEsperanto")
-	const Cyrillic2ToEsperantoEl = document.getElementById("Cyrillic2ToEsperanto")
-	const ShavianToEsperantoEl = document.getElementById("ShavianToEsperanto")
-	const XSystemToEsperantoEl = document.getElementById("XSystemToEsperanto")
-	const ArabicToEsperantoEl = document.getElementById("ArabicToEsperanto")
+	var el_cyrillic_to_esperanto = document.getElementById("CyrillicToEsperanto")
+	var el_cyrillic_2_to_esperanto = document.getElementById("Cyrillic2ToEsperanto")
+	var el_shavian_to_esperanto = document.getElementById("ShavianToEsperanto")
+	var el_x_system_to_esperanto = document.getElementById("XSystemToEsperanto")
+	var el_arabic_to_esperanto = document.getElementById("ArabicToEsperanto")
 
-	function checkVisible(elm) {
-		const rect = elm.getBoundingClientRect()
-		const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight)
-		return !(rect.bottom < 0 || rect.top - viewHeight >= 0)
+	function is_visible(elm) {
+		var rect = elm.getBoundingClientRect()
+		var view_height = Math.max(document.documentElement.clientHeight, window.innerHeight)
+		return !(rect.bottom < 0 || rect.top - view_height >= 0)
 	}
 
-	function scrollToOutput() {
-		if (!checkVisible(outputEl)) {
-			outputEl.scrollIntoView(true)
+	function scroll_to_output() {
+		if (!is_visible(el_output)) {
+			el_output.scrollIntoView(true)
 		}
 	}
 
 	function convert_t() {
-		let input = inputEl.value
+		var input = el_input.value
 		if (input.length == 0) {
-			inputEl.focus()
+			el_input.focus()
 			return
 		}
-		let cm = {}, r = false
-		if (EsperantoToCyrillicEl.checked) {
-			cm = converter.d.Esperanto_Cyrillic
-		} else if (EsperantoToCyrillic2El.checked) {
-			cm = converter.d.Esperanto_Cyrillic2
-		} else if (EsperantoToArabicEl.checked) {
-			cm = converter.d.Esperanto_Arabic
-		} else if (EsperantoToShavianEl.checked) {
-			cm = converter.d.Esperanto_Shavian
-		} else if (EsperantoToXSystemEl.checked) {
-			cm = converter.d.Esperanto_XSystem
-		} else if (XSystemToEsperantoEl.checked) {
-			cm = converter.d.XSystem_Esperanto
-			r = true
-		} else if (ShavianToEsperantoEl.checked) {
-			cm = converter.d.Shavian_Esperanto
-			r = true
-		} else if (CyrillicToEsperantoEl.checked) {
-			cm = converter.d.Cyrillic_Esperanto
-		} else if (Cyrillic2ToEsperantoEl.checked) {
-			cm = converter.d.Cyrillic2_Esperanto
-		} else if (ArabicToEsperantoEl.checked) {
-			cm = converter.d.Arabic_Esperanto
-			r = true
+		var skribsistemo = {}, use_replacing = false
+		if (el_esperanto_to_cyrillic.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic.from_esperanto
+		} else if (el_esperanto_to_cyrillic_2.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.from_esperanto
+		} else if (el_esperanto_to_arabic.checked) {
+			skribsistemo = konvertilo.skribsistemoj.arabic.from_esperanto
+		} else if (el_esperanto_to_shavian.checked) {
+			skribsistemo = konvertilo.skribsistemoj.shavian.from_esperanto
+		} else if (el_esperanto_to_x_system.checked) {
+			skribsistemo = konvertilo.skribsistemoj.x_system.from_esperanto
+		} else if (el_x_system_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.x_system.to_esperanto
+			use_replacing = true
+		} else if (el_shavian_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.shavian.to_esperanto
+			use_replacing = true
+		} else if (el_cyrillic_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic.to_esperanto
+		} else if (el_cyrillic_2_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.to_esperanto
+		} else if (el_arabic_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.arabic.to_esperanto
+			use_replacing = true
 		}
-		outputEl.value = converter.convert(input, cm, r)
-		scrollToOutput()
+		el_output.value = konvertilo.konverti(input, skribsistemo, use_replacing)
+		scroll_to_output()
 	}
 
-	convertEl.onclick = convert_t
+	el_convert.onclick = convert_t
 
 	function clear_t() {
-		inputEl.value = ""
-		outputEl.value = ""
+		el_input.value = ""
+		el_output.value = ""
 	}
 
-	clearEl.onclick = clear_t
+	el_clear.onclick = clear_t
 
 	function check_trl(userlangs, currentlang, trllangs) {
-		for (let i = 0; i < userlangs.length; i++) {
-			const userlang = userlangs[i]
+		for (var i = 0; i < userlangs.length; i++) {
+			var userlang = userlangs[i]
 			if (userlang === currentlang) {
 				return { no_change: true }
 			} else if (trllangs.indexOf(userlang) > -1) {
@@ -85,38 +85,38 @@ window.onload = function () {
 	}
 
 	function my_translate(ekey, nlang) {
-		const enkey = TrlData[ekey]
+		var enkey = TrlData[ekey]
 		if (enkey == undefined) {
 			return { ok: false }
 		}
-		const nvalue = enkey[nlang]
+		var nvalue = enkey[nlang]
 		return (nvalue == undefined) ? { ok: false } : { ok: true, new_value: nvalue }
 	}
 
 	window.localize = function (nlang) {
 		document.querySelectorAll("[data-trl]").forEach(el => {
-			const el_attr = el.getAttribute('data-trl')
-			let p = {}
+			var el_attr = el.getAttribute('data-trl')
+			var p = {}
 			switch (el_attr.charAt(0)) {
 				case "1":
 					p = my_translate(el_attr, nlang)
 					if (p.ok === true) el.innerText = p.new_value
-				break
+					break
 				case "2":
 					p = my_translate(el_attr, nlang)
 					if (p.ok === true) el.value = p.new_value
-				break
+					break
 				case "3":
 					p = my_translate(el_attr, nlang)
 					if (p.ok === true) el.placeholder = p.new_value
-				break
+					break
 			}
 		})
 		document.documentElement.lang = nlang
 	}
 
 	try {
-		const trl_checked = check_trl(navigator.languages, "en", TrlLanguages)
-		if (!trl_checked.no_change) localize(trl_checked.lang)
+		var trl_checked = check_trl(navigator.languages, "en", TrlLanguages)
+		if (!trl_checked.no_change) { localize(trl_checked.lang) }
 	} catch (err) { }
 }
