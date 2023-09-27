@@ -65,6 +65,16 @@ var TrlData = {
 		"bg": "кирилица 2 → есперанто",
 		"eo": "Cirila 2 → Esperanto",
 	},
+	"10015": {
+		"en": "Esperanto → Georgian",
+		"bg": "есперанто → грузински",
+		"eo": "Esperanto → Kartvela",
+	},
+	"10016": {
+		"en": "Georgian → Esperanto",
+		"bg": "грузински → есперанто",
+		"eo": "Kartvela → Esperanto",
+	},
 	"20001": {
 		"en": "convert",
 		"bg": "конвертирай",

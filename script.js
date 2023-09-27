@@ -9,12 +9,14 @@ window.onload = function () {
 	var el_esperanto_to_shavian = document.getElementById("EsperantoToShavian")
 	var el_esperanto_to_x_system = document.getElementById("EsperantoToXSystem")
 	var el_esperanto_to_arabic = document.getElementById("EsperantoToArabic")
+	var el_esperanto_to_georgian = document.getElementById("EsperantoToGeorgian")
 
 	var el_cyrillic_to_esperanto = document.getElementById("CyrillicToEsperanto")
 	var el_cyrillic_2_to_esperanto = document.getElementById("Cyrillic2ToEsperanto")
 	var el_shavian_to_esperanto = document.getElementById("ShavianToEsperanto")
 	var el_x_system_to_esperanto = document.getElementById("XSystemToEsperanto")
 	var el_arabic_to_esperanto = document.getElementById("ArabicToEsperanto")
+	var el_georgian_to_esperanto = document.getElementById("GeorgianToEsperanto")
 
 	function is_visible(elm) {
 		var rect = elm.getBoundingClientRect()
@@ -37,27 +39,31 @@ window.onload = function () {
 		var skribsistemo = {}, use_replacing = false
 		if (el_esperanto_to_cyrillic.checked) {
 			skribsistemo = konvertilo.skribsistemoj.cyrillic.from_esperanto
-		} else if (el_esperanto_to_cyrillic_2.checked) {
-			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.from_esperanto
-		} else if (el_esperanto_to_arabic.checked) {
-			skribsistemo = konvertilo.skribsistemoj.arabic.from_esperanto
+		} else if (el_cyrillic_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic.to_esperanto
 		} else if (el_esperanto_to_shavian.checked) {
 			skribsistemo = konvertilo.skribsistemoj.shavian.from_esperanto
+		} else if (el_shavian_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.shavian.to_esperanto
+			use_replacing = true
 		} else if (el_esperanto_to_x_system.checked) {
 			skribsistemo = konvertilo.skribsistemoj.x_system.from_esperanto
 		} else if (el_x_system_to_esperanto.checked) {
 			skribsistemo = konvertilo.skribsistemoj.x_system.to_esperanto
 			use_replacing = true
-		} else if (el_shavian_to_esperanto.checked) {
-			skribsistemo = konvertilo.skribsistemoj.shavian.to_esperanto
-			use_replacing = true
-		} else if (el_cyrillic_to_esperanto.checked) {
-			skribsistemo = konvertilo.skribsistemoj.cyrillic.to_esperanto
-		} else if (el_cyrillic_2_to_esperanto.checked) {
-			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.to_esperanto
+		} else if (el_esperanto_to_arabic.checked) {
+			skribsistemo = konvertilo.skribsistemoj.arabic.from_esperanto
 		} else if (el_arabic_to_esperanto.checked) {
 			skribsistemo = konvertilo.skribsistemoj.arabic.to_esperanto
 			use_replacing = true
+		} else if (el_esperanto_to_cyrillic_2.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.from_esperanto
+		} else if (el_cyrillic_2_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.cyrillic_2.to_esperanto
+		} else if (el_esperanto_to_georgian.checked) {
+			skribsistemo = konvertilo.skribsistemoj.georgian.from_esperanto
+		} else if (el_georgian_to_esperanto.checked) {
+			skribsistemo = konvertilo.skribsistemoj.georgian.to_esperanto
 		}
 		el_output.value = konvertilo.konverti(input, skribsistemo, use_replacing)
 		scroll_to_output()
