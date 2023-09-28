@@ -173,6 +173,9 @@ var konvertilo = {
 			return output
 		}
 		return function (input, skribsistemo, use_replacing) {
+			if (input.length == 0) {
+				return ""
+			}
 			if (use_replacing) {
 				return convert_replacing(input, skribsistemo)
 			}
