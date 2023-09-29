@@ -1,5 +1,5 @@
 var lcl_lang = "en"
-var lcl_langs = ["en", "bg", "eo"]
+var lcl_langs = ["en", "eo", "bg"]
 
 var options_convert = [
 	{
@@ -77,7 +77,7 @@ function _i(o) {
 
 function lcl_page(lang) {
 	lcl_lang = lang
-	document.title = _i({ "en": "Esperanto alphabet converter", "bg": "Есперанто конвертор на азбуки", "eo": "Esperanta alfabeta konvertilo" })
+	document.title = _i({ "en": "Esperanto alphabet converter", "bg": "Есперанто конвертор на азбуки", "eo": "Esperanta skribsistema konvertilo" })
 	document.documentElement.lang = lcl_lang
 }
 
@@ -120,17 +120,6 @@ function build_page() {
 	el_header.appendChild(el_title)
 	body.appendChild(el_header)
 
-	var el_input = document.createElement("textarea")
-	el_input.classList.add("form-control")
-	el_input.rows = "10"
-	el_input.placeholder = _i({ "en": "Input", "bg": "Въведи", "eo": "Enigu" })
-	el_input.onkeyup = convert
-
-	var el_con_input = document.createElement("div")
-	el_con_input.classList.add("mb-3")
-	el_con_input.appendChild(el_input)
-	body.appendChild(el_con_input)
-
 	var el_con_langs = document.createElement("div")
 	el_con_langs.classList.add("row")
 
@@ -144,6 +133,7 @@ function build_page() {
 			if (this.checked) {
 				selected_convert = o
 				if (el_input.value.length == 0) {
+					el_output.value = ""
 					el_input.focus()
 					return
 				} else {
@@ -177,6 +167,17 @@ function build_page() {
 	el_con_control.classList.add("mb-3")
 	el_con_control.appendChild(el_con_langs)
 	body.appendChild(el_con_control)
+
+	var el_input = document.createElement("textarea")
+	el_input.classList.add("form-control")
+	el_input.rows = "10"
+	el_input.placeholder = _i({ "en": "Input", "bg": "Въведи", "eo": "Enigu" })
+	el_input.onkeyup = convert
+
+	var el_con_input = document.createElement("div")
+	el_con_input.classList.add("mb-3")
+	el_con_input.appendChild(el_input)
+	body.appendChild(el_con_input)
 
 	var el_output = document.createElement("textarea")
 	el_output.classList.add("form-control")
@@ -218,6 +219,15 @@ function build_page() {
 		el_output.value = ""
 	}
 
+	var el_btn_letters = document.createElement("input")
+	el_btn_letters.type = "button"
+	el_btn_letters.classList.add("btn", "btn-primary", "mx-1")
+	el_btn_letters.value = _i({ "en": "letters", "bg": "букви", "eo": "literoj" })
+	el_btn_letters.onclick = function () {
+		el_output.value = Object.entries(selected_convert.s).map(e=>e.join(": ")).join(";    ")
+		el_output.focus()
+	}
+
 	var el_btn_code = document.createElement("a")
 	el_btn_code.classList.add("btn", "btn-primary", "mx-1")
 	el_btn_code.href = "https://github.com/salif/alfabetoj"
@@ -227,6 +237,7 @@ function build_page() {
 	var el_con_b_control = document.createElement("div")
 	el_con_b_control.appendChild(el_btn_lcl)
 	el_con_b_control.appendChild(el_btn_clear)
+	el_con_b_control.appendChild(el_btn_letters)
 	el_con_b_control.appendChild(el_btn_code)
 	body.appendChild(el_con_b_control)
 

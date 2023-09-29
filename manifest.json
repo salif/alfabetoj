@@ -1,6 +1,6 @@
 {
 	"short_name": "alfabetoj",
-	"name": "Esperanto alphabet converter",
+	"name": "Alfabetoj",
 	"icons": [
 		{
 			"src": "/alfabetoj/favicon-96x96.png",
@@ -16,10 +16,10 @@
 		}
 	],
 	"start_url": "./index.html",
-	"background_color": "#FFFFFF",
+	"background_color": "#F8F9FA",
 	"display": "standalone",
 	"scope": "/alfabetoj/",
-	"theme_color": "#FFFFFF",
+	"theme_color": "#F8F9FA",
 	"dir": "ltr",
 	"description": "Esperanto alphabet converter"
 }
