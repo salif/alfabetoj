@@ -100,6 +100,22 @@ var konvertilo = {
 				"u": "უ", "ŭ": "ჳ", "v": "ვ", "z": "ზ"
 			}
 		},
+		armenian: {
+			to_esperanto: {},
+			from_esperanto: {}
+		},
+		hebrew: {
+			to_esperanto: {},
+			from_esperanto: {}
+		},
+		greek: {
+			to_esperanto: {},
+			from_esperanto: {}
+		},
+		korean: {
+			to_esperanto: {},
+			from_esperanto: {}
+		},
 		cyrillic_2: {
 			to_esperanto: {
 				"А": "A", "Б": "B", "Ц": "C", "Ч": "Ĉ", "Д": "D", "Е": "E",
