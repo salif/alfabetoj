@@ -126,14 +126,14 @@ var konvertilo = {
 				"u": "ւ", "ŭ": "ւ", "v": "վ", "z": "զ"
 			}
 		},
-		hebrew: {
-			to_esperanto: {},
-			from_esperanto: {}
-		},
-		greek: {
-			to_esperanto: {},
-			from_esperanto: {}
-		},
+		// hebrew: {
+		// 	to_esperanto: {},
+		// 	from_esperanto: {}
+		// },
+		// greek: {
+		// 	to_esperanto: {},
+		// 	from_esperanto: {}
+		// },
 		korean: {
 			from_esperanto: {
 				"A": "ㅏ", "B": "ㅂ", "C": "ㅉ", "Ĉ": "ㅊ", "D": "ㄷ", "E": "ㅔ",

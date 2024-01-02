@@ -62,26 +62,36 @@ var objs_options_convert = [
 		s: konvertilo.skribsistemoj.armenian.to_esperanto,
 		r: false,
 	},
-	{
-		l: { "en": "Esperanto → Hebrew", "bg": "есперанто → иврит", "eo": "Esperanto → Hebrea" },
-		s: konvertilo.skribsistemoj.hebrew.from_esperanto,
-		r: false,
-	},
-	{
-		l: { "en": "Hebrew → Esperanto", "bg": "иврит → есперанто", "eo": "Hebrea → Esperanto" },
-		s: konvertilo.skribsistemoj.hebrew.to_esperanto,
-		r: false,
-	},
-	{
-		l: { "en": "Esperanto → Greek", "bg": "есперанто → гръцки", "eo": "Esperanto → Greka" },
-		s: konvertilo.skribsistemoj.greek.from_esperanto,
-		r: false,
-	},
-	{
-		l: { "en": "Greek → Esperanto", "bg": "гръцки → есперанто", "eo": "Greka → Esperanto" },
-		s: konvertilo.skribsistemoj.greek.to_esperanto,
-		r: false,
-	},
+	// {
+	// 	l: { "en": "Esperanto → Hebrew", "bg": "есперанто → иврит", "eo": "Esperanto → Hebrea" },
+	// 	s: konvertilo.skribsistemoj.hebrew.from_esperanto,
+	// 	r: false,
+	// },
+	// {
+	// 	l: { "en": "Hebrew → Esperanto", "bg": "иврит → есперанто", "eo": "Hebrea → Esperanto" },
+	// 	s: konvertilo.skribsistemoj.hebrew.to_esperanto,
+	// 	r: false,
+	// },
+	// {
+	// 	l: { "en": "Esperanto → Greek", "bg": "есперанто → гръцки", "eo": "Esperanto → Greka" },
+	// 	s: konvertilo.skribsistemoj.greek.from_esperanto,
+	// 	r: false,
+	// },
+	// {
+	// 	l: { "en": "Greek → Esperanto", "bg": "гръцки → есперанто", "eo": "Greka → Esperanto" },
+	// 	s: konvertilo.skribsistemoj.greek.to_esperanto,
+	// 	r: false,
+	// },
+	// {
+	// 	l: { "en": "Esperanto → Korean", "bg": "есперанто → корейски", "eo": "Esperanto → Korea" },
+	// 	s: konvertilo.skribsistemoj.korean.from_esperanto,
+	// 	r: false,
+	// },
+	// {
+	// 	l: { "en": "Korean → Esperanto", "bg": "корейски → есперанто", "eo": "Korea → Esperanto" },
+	// 	s: konvertilo.skribsistemoj.korean.to_esperanto,
+	// 	r: false,
+	// },
 	{
 		l: { "en": "Esperanto → Cyrillic 2", "bg": "есперанто → кирилица 2", "eo": "Esperanto → Cirila 2" },
 		s: konvertilo.skribsistemoj.cyrillic_2.from_esperanto,
