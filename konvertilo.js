@@ -100,6 +100,54 @@ var konvertilo = {
 				"u": "უ", "ŭ": "ჳ", "v": "ვ", "z": "ზ"
 			}
 		},
+		armenian: {
+			to_esperanto: {
+				"Ա": "A", "Բ": "B", "Ծ": "C", "Ճ": "Ĉ", "Դ": "D", "է": "E",
+				"Ֆ": "F", "Գ": "G", "Ղ": "Ĝ", "Հ": "H", "Խ": "Ĥ", "Ի": "I",
+				"Յ": "J", "Ջ": "Ĵ", "Կ": "K", "Լ": "L", "Մ": "M", "Ն": "N",
+				"Ո": "O", "Պ": "P", "Ր": "R", "Ս": "S", "Շ": "Ŝ", "Տ": "T",
+				"Ւ": "U", "Ւ": "Ŭ", "Վ": "V", "Զ": "Z",
+				"ա": "a", "բ": "b", "ծ": "c", "ճ": "ĉ", "դ": "d", "ե": "e",
+				"ֆ": "f", "գ": "g", "ղ": "ĝ", "հ": "h", "խ": "ĥ", "ի": "i",
+				"յ": "j", "ջ": "ĵ", "կ": "k", "լ": "l", "մ": "m", "ն": "n",
+				"ո": "o", "պ": "p", "ր": "r", "ս": "s", "շ": "ŝ", "տ": "t",
+				"ւ": "u", "ւ": "ŭ", "վ": "v", "զ": "z",
+			},
+			from_esperanto: {
+				"A": "Ա", "B": "Բ", "C": "Ծ", "Ĉ": "Ճ", "D": "Դ", "E": "է",
+				"F": "Ֆ", "G": "Գ", "Ĝ": "Ղ", "H": "Հ", "Ĥ": "Խ", "I": "Ի",
+				"J": "Յ", "Ĵ": "Ջ", "K": "Կ", "L": "Լ", "M": "Մ", "N": "Ն",
+				"O": "Ո", "P": "Պ", "R": "Ր", "S": "Ս", "Ŝ": "Շ", "T": "Տ",
+				"U": "Ւ", "Ŭ": "Ւ", "V": "Վ", "Z": "Զ",
+				"a": "ա", "b": "բ", "c": "ծ", "ĉ": "ճ", "d": "դ", "e": "ե",
+				"f": "ֆ", "g": "գ", "ĝ": "ղ", "h": "հ", "ĥ": "խ", "i": "ի",
+				"j": "յ", "ĵ": "ջ", "k": "կ", "l": "լ", "m": "մ", "n": "ն",
+				"o": "ո", "p": "պ", "r": "ր", "s": "ս", "ŝ": "շ", "t": "տ",
+				"u": "ւ", "ŭ": "ւ", "v": "վ", "z": "զ"
+			}
+		},
+		// hebrew: {
+		// 	to_esperanto: {},
+		// 	from_esperanto: {}
+		// },
+		// greek: {
+		// 	to_esperanto: {},
+		// 	from_esperanto: {}
+		// },
+		korean: {
+			from_esperanto: {
+				"A": "ㅏ", "B": "ㅂ", "C": "ㅉ", "Ĉ": "ㅊ", "D": "ㄷ", "E": "ㅔ",
+				"F": "ㅍ", "G": "ㄱ", "Ĝ": "ㄲ", "H": "ㆆ", "Ĥ": "ㅎ", "I": "ㅣ",
+				"J": "ㅣ", "Ĵ": "ㅈ", "K": "ㅋ", "L": "ㄹ", "M": "ㅁ", "N": "ㄴ",
+				"O": "ㅗ", "P": "ㅃ", "R": "ㄹ", "S": "ㅅ", "Ŝ": "ㅆ", "T": "ㅌ",
+				"U": "ㅜ", "Ŭ": "으", "V": "ㅸ", "Z": "ㅿ",
+				"a": "ㅏ", "b": "ㅂ", "c": "ㅉ", "ĉ": "ㅊ", "d": "ㄷ", "e": "ㅔ",
+				"f": "ㅍ", "g": "ㄱ", "ĝ": "ㄲ", "h": "ㆆ", "ĥ": "ㅎ", "i": "ㅣ",
+				"j": "ㅣ", "ĵ": "ㅈ", "k": "ㅋ", "l": "ㄹ", "m": "ㅁ", "n": "ㄴ",
+				"o": "ㅗ", "p": "ㅃ", "r": "ㄹ", "s": "ㅅ", "ŝ": "ㅆ", "t": "ㅌ",
+				"u": "ㅜ", "ŭ": "으", "v": "ㅸ", "z": "ㅿ"
+			}
+		},
 		cyrillic_2: {
 			to_esperanto: {
 				"А": "A", "Б": "B", "Ц": "C", "Ч": "Ĉ", "Д": "D", "Е": "E",
@@ -163,29 +211,29 @@ var konvertilo = {
 	},
 	konverti: (function () {
 
-		function convert_replacing(input, skribsistemo) {
-			var output = input
-			var entries = Object.entries(skribsistemo)
-			for (var i = 0; i < entries.length; i++) {
-				var entry = entries[i]
-				output = output.replaceAll(entry[0], entry[1])
+		function convert_replacing(str_input, obj_skribsistemo) {
+			var str_output = str_input
+			var objs_entries = Object.entries(obj_skribsistemo)
+			for (var num_i = 0; num_i < objs_entries.length; num_i++) {
+				var objs_entry = objs_entries[num_i]
+				str_output = str_output.replaceAll(objs_entry[0], objs_entry[1])
 			}
-			return output
+			return str_output
 		}
-		return function (input, skribsistemo, use_replacing) {
-			if (input.length == 0) {
+		return function (str_input, obj_skribsistemo, bool_use_replacing) {
+			if (str_input.length == 0) {
 				return ""
 			}
-			if (use_replacing) {
-				return convert_replacing(input, skribsistemo)
+			if (bool_use_replacing) {
+				return convert_replacing(str_input, obj_skribsistemo)
 			}
-			var output = []
-			for (var i = 0; i < input.length; i++) {
-				var input_char = input.charAt(i)
-				var output_char = skribsistemo[input_char]
-				output.push(output_char != undefined ? output_char : input_char)
+			var strs_output = []
+			for (var num_i = 0; num_i < str_input.length; num_i++) {
+				var str_input_char = str_input.charAt(num_i)
+				var str_output_char = obj_skribsistemo[str_input_char]
+				strs_output.push(str_output_char != undefined ? str_output_char : str_input_char)
 			}
-			return output.join("")
+			return strs_output.join("")
 		}
 
 	})()
