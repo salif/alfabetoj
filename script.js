@@ -83,16 +83,6 @@ var objs_options_convert = [
 		r: false,
 	},
 	{
-		l: { "en": "Esperanto → Korean", "bg": "есперанто → корейски", "eo": "Esperanto → Korea" },
-		s: konvertilo.skribsistemoj.korean.from_esperanto,
-		r: false,
-	},
-	{
-		l: { "en": "Korean → Esperanto", "bg": "корейски → есперанто", "eo": "Korea → Esperanto" },
-		s: konvertilo.skribsistemoj.korean.to_esperanto,
-		r: false,
-	},
-	{
 		l: { "en": "Esperanto → Cyrillic 2", "bg": "есперанто → кирилица 2", "eo": "Esperanto → Cirila 2" },
 		s: konvertilo.skribsistemoj.cyrillic_2.from_esperanto,
 		r: false,
