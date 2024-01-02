@@ -1,14 +1,14 @@
-# Esperanto alphabet converter
+# alfabetoj
+
+A tool for transliterating Esperanto text into other alphabets
 
 ## Links
 
 * Homepage: [salif.github.io/alfabetoj](https://salif.github.io/alfabetoj/)
-* Source code: [github.com/salif/alfabetoj](https://github.com/salif/alfabetoj)
-* Source code: [codeberg.org/salif/alfabetoj](https://codeberg.org/salif/alfabetoj)
-* Issues (Github): [github.com/salif/alfabetoj/issues](https://github.com/salif/alfabetoj/issues)
-* Issues (Codeberg): [codeberg.org/salif/alfabetoj/issues](https://codeberg.org/salif/alfabetoj/issues)
-* Discuss (Github): [github.com/salif/alfabetoj/discussions](https://github.com/salif/alfabetoj/discussions)
-* Chat (Element/Matrix): [#salif-alfabetoj:mozilla.org](https://matrix.to/#/#salif-alfabetoj:mozilla.org)
+* Source code: [Github](https://github.com/salif/alfabetoj), [Codeberg](https://codeberg.org/salif/alfabetoj)
+* Issues: [Github](https://github.com/salif/alfabetoj/issues), [Codeberg](https://codeberg.org/salif/alfabetoj/issues)
+* Discuss: [Github](https://github.com/salif/alfabetoj/discussions)
+* [Matrix Chat](https://matrix.to/#/#salif-alfabetoj:mozilla.org): #salif-alfabetoj:mozilla.org
 
 ## Contributing
 

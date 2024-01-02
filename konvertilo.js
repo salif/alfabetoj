@@ -201,29 +201,29 @@ var konvertilo = {
 	},
 	konverti: (function () {
 
-		function convert_replacing(input, skribsistemo) {
-			var output = input
-			var entries = Object.entries(skribsistemo)
-			for (var i = 0; i < entries.length; i++) {
-				var entry = entries[i]
-				output = output.replaceAll(entry[0], entry[1])
+		function convert_replacing(str_input, obj_skribsistemo) {
+			var str_output = str_input
+			var objs_entries = Object.entries(obj_skribsistemo)
+			for (var num_i = 0; num_i < objs_entries.length; num_i++) {
+				var objs_entry = objs_entries[num_i]
+				str_output = str_output.replaceAll(objs_entry[0], objs_entry[1])
 			}
-			return output
+			return str_output
 		}
-		return function (input, skribsistemo, use_replacing) {
-			if (input.length == 0) {
+		return function (str_input, obj_skribsistemo, bool_use_replacing) {
+			if (str_input.length == 0) {
 				return ""
 			}
-			if (use_replacing) {
-				return convert_replacing(input, skribsistemo)
+			if (bool_use_replacing) {
+				return convert_replacing(str_input, obj_skribsistemo)
 			}
-			var output = []
-			for (var i = 0; i < input.length; i++) {
-				var input_char = input.charAt(i)
-				var output_char = skribsistemo[input_char]
-				output.push(output_char != undefined ? output_char : input_char)
+			var strs_output = []
+			for (var num_i = 0; num_i < str_input.length; num_i++) {
+				var str_input_char = str_input.charAt(num_i)
+				var str_output_char = obj_skribsistemo[str_input_char]
+				strs_output.push(str_output_char != undefined ? str_output_char : str_input_char)
 			}
-			return output.join("")
+			return strs_output.join("")
 		}
 
 	})()

@@ -1,7 +1,7 @@
-var lcl_lang = "en"
-var lcl_langs = ["en", "eo", "bg"]
+var str_lcl_lang = "en"
+var strs_lcl_langs = ["en", "eo", "bg"]
 
-var options_convert = [
+var objs_options_convert = [
 	{
 		l: { "en": "Esperanto → Cyrillic", "bg": "есперанто → кирилица", "eo": "Esperanto → Cirila" },
 		s: konvertilo.skribsistemoj.cyrillic.from_esperanto,
@@ -104,43 +104,39 @@ var options_convert = [
 	}
 ]
 
-var selected_convert = options_convert[0]
+var obj_selected_convert = objs_options_convert[0]
 
-function _i(o) {
-	var ro = o[lcl_lang]
-	if (ro == undefined) {
-		return ""
-	} else {
-		return ro
-	}
+function _i(obj) {
+	var str_ro = obj[str_lcl_lang]
+	return str_ro == undefined ? "" : str_ro
 }
 
-function lcl_page(lang) {
-	lcl_lang = lang
+function lcl_page(str_lang) {
+	str_lcl_lang = str_lang
 	document.title = _i({ "en": "Esperanto alphabet converter", "bg": "Есперанто конвертор на азбуки", "eo": "Esperanta skribsistema konvertilo" })
-	document.documentElement.lang = lcl_lang
+	document.documentElement.lang = str_lcl_lang
 }
 
 function check_lcl() {
-	var user_langs = navigator.languages
-	var site_langs = lcl_langs
-	for (var i = 0; i < user_langs.length; i++) {
-		var user_lang = user_langs[i]
-		if (user_lang === lcl_lang) {
-			return { yes: false }
-		} else if (site_langs.indexOf(user_lang) > -1) {
-			return { yes: true, lang: user_lang }
+	var strs_user_langs = navigator.languages
+	var strs_site_langs = strs_lcl_langs
+	for (var num_i = 0; num_i < strs_user_langs.length; num_i++) {
+		var str_user_lang = strs_user_langs[num_i]
+		if (str_user_lang === str_lcl_lang) {
+			return { is_yes: false }
+		} else if (strs_site_langs.indexOf(str_user_lang) > -1) {
+			return { is_yes: true, str_lang: str_user_lang }
 		}
 	}
-	return { yes: false }
+	return { is_yes: false }
 }
 
 function load_page() {
 
 	try {
-		var lcl_c = check_lcl()
-		if (lcl_c.yes) {
-			lcl_page(lcl_c.lang)
+		var obj_lcl_c = check_lcl()
+		if (obj_lcl_c.is_yes) {
+			lcl_page(obj_lcl_c.str_lang)
 		}
 	} catch (err) { }
 
@@ -149,7 +145,7 @@ function load_page() {
 
 function build_page() {
 
-	var body = document.getElementById("main")
+	var el_body = document.getElementById("main")
 
 	var el_title = document.createElement("div")
 	el_title.classList.add("h3")
@@ -158,20 +154,20 @@ function build_page() {
 	var el_header = document.createElement("div")
 	el_header.classList.add("p-4")
 	el_header.appendChild(el_title)
-	body.appendChild(el_header)
+	el_body.appendChild(el_header)
 
 	var el_con_langs = document.createElement("div")
 	el_con_langs.classList.add("row")
 
-	var create_lang_option = function (o, i, p) {
+	var create_lang_option = function (obj, num_i, el_p) {
 		var el_lang = document.createElement("input")
 		el_lang.classList.add("btn-check")
 		el_lang.type = "radio"
 		el_lang.name = "lang_o"
-		el_lang.id = "lang_" + i
-		el_lang.onchange = function (e) {
+		el_lang.id = "lang_" + num_i
+		el_lang.onchange = function (ev) {
 			if (this.checked) {
-				selected_convert = o
+				obj_selected_convert = obj
 				if (el_input.value.length == 0) {
 					el_output.value = ""
 					el_input.focus()
@@ -186,18 +182,18 @@ function build_page() {
 		var el_lang_label = document.createElement("label")
 		el_lang_label.classList.add("btn", "btn-outline-success")
 		el_lang_label.htmlFor = el_lang.id
-		el_lang_label.textContent = _i(o.l)
+		el_lang_label.textContent = _i(obj.l)
 
-		p.appendChild(el_lang)
-		p.appendChild(el_lang_label)
+		el_p.appendChild(el_lang)
+		el_p.appendChild(el_lang_label)
 
 	}
 
-	for (var i = 0; i < options_convert.length; i += 2) {
+	for (var num_i = 0; num_i < objs_options_convert.length; num_i += 2) {
 		var el_con_lang = document.createElement("div")
 		el_con_lang.classList.add("btn-group", "col-auto", "my-1")
-		create_lang_option(options_convert[i], i, el_con_lang)
-		create_lang_option(options_convert[i + 1], i + 1, el_con_lang)
+		create_lang_option(objs_options_convert[num_i], num_i, el_con_lang)
+		create_lang_option(objs_options_convert[num_i + 1], num_i + 1, el_con_lang)
 		el_con_langs.appendChild(el_con_lang)
 	}
 
@@ -206,7 +202,7 @@ function build_page() {
 	var el_con_control = document.createElement("div")
 	el_con_control.classList.add("mb-3")
 	el_con_control.appendChild(el_con_langs)
-	body.appendChild(el_con_control)
+	el_body.appendChild(el_con_control)
 
 	var el_input = document.createElement("textarea")
 	el_input.classList.add("form-control")
@@ -217,7 +213,7 @@ function build_page() {
 	var el_con_input = document.createElement("div")
 	el_con_input.classList.add("mb-3")
 	el_con_input.appendChild(el_input)
-	body.appendChild(el_con_input)
+	el_body.appendChild(el_con_input)
 
 	var el_output = document.createElement("textarea")
 	el_output.classList.add("form-control")
@@ -227,7 +223,7 @@ function build_page() {
 	var el_con_output = document.createElement("div")
 	el_con_output.classList.add("mb-3")
 	el_con_output.appendChild(el_output)
-	body.appendChild(el_con_output)
+	el_body.appendChild(el_con_output)
 
 	var el_btn_lcl = document.createElement("select")
 	el_btn_lcl.classList.add("form-select", "mx-1")
@@ -235,16 +231,16 @@ function build_page() {
 	el_btn_lcl.style.display = "inline-block"
 	el_btn_lcl.onchange = function () {
 		lcl_page(this.value)
-		body.innerHTML = ""
+		el_body.innerHTML = ""
 		build_page()
 	}
 
-	for (var i = 0; i < lcl_langs.length; i++) {
-		var lang = lcl_langs[i]
+	for (var num_i = 0; num_i < strs_lcl_langs.length; num_i++) {
+		var str_lang = strs_lcl_langs[num_i]
 		var el_btn_lcl_o = document.createElement("option")
-		el_btn_lcl_o.value = lang
-		el_btn_lcl_o.textContent = lang
-		if (lang === lcl_lang) {
+		el_btn_lcl_o.value = str_lang
+		el_btn_lcl_o.textContent = str_lang
+		if (str_lang === str_lcl_lang) {
 			el_btn_lcl_o.selected = true
 		}
 		el_btn_lcl.appendChild(el_btn_lcl_o)
@@ -264,7 +260,9 @@ function build_page() {
 	el_btn_letters.classList.add("btn", "btn-primary", "mx-1")
 	el_btn_letters.value = _i({ "en": "letters", "bg": "букви", "eo": "literoj" })
 	el_btn_letters.onclick = function () {
-		el_output.value = Object.entries(selected_convert.s).map(e=>e.join(": ")).join(";    ")
+		el_output.value = Object.entries(obj_selected_convert.s).map(function (e) {
+			return e.join(": ")
+		}).join(";    ")
 		el_output.focus()
 	}
 
@@ -279,19 +277,19 @@ function build_page() {
 	el_con_b_control.appendChild(el_btn_clear)
 	el_con_b_control.appendChild(el_btn_letters)
 	el_con_b_control.appendChild(el_btn_code)
-	body.appendChild(el_con_b_control)
+	el_body.appendChild(el_con_b_control)
 
-	function scroll_to_output(elm) {
-		var rect = elm.getBoundingClientRect()
-		var view_height = Math.max(document.documentElement.clientHeight, window.innerHeight)
-		var is_not_visible = rect.bottom < 0 || rect.top - view_height >= 0
+	function scroll_to_output(el) {
+		var dom_rect = el.getBoundingClientRect()
+		var num_view_height = Math.max(document.documentElement.clientHeight, window.innerHeight)
+		var is_not_visible = dom_rect.bottom < 0 || dom_rect.top - num_view_height >= 0
 		if (is_not_visible) {
-			elm.scrollIntoView(true)
+			el.scrollIntoView(true)
 		}
 	}
 
 	function convert() {
-		el_output.value = konvertilo.konverti(el_input.value, selected_convert.s, selected_convert.r)
+		el_output.value = konvertilo.konverti(el_input.value, obj_selected_convert.s, obj_selected_convert.r)
 	}
 }
 
