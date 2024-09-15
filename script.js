@@ -268,7 +268,7 @@ function build_page() {
 
 	var el_btn_code = document.createElement("a")
 	el_btn_code.classList.add("btn", "btn-primary", "mx-1")
-	el_btn_code.href = "https://github.com/salif/alfabetoj"
+	el_btn_code.href = "https://codeberg.org/salif/alfabetoj"
 	el_btn_code.target = "_blank"
 	el_btn_code.textContent = _i({ "en": "code", "bg": "код", "eo": "fontkodo" })
 

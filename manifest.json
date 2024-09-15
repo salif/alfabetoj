@@ -1,25 +1,24 @@
 {
-	"short_name": "alfabetoj",
 	"name": "Alfabetoj",
+	"short_name": "alfabetoj",
+	"id": "alfabetoj",
+	"description": "Esperanto alphabet converter",
+	"start_url": "./index.html",
+	"scope": "/alfabetoj/",
+	"display": "standalone",
+	"background_color": "#F8F9FA",
+	"theme_color": "#F8F9FA",
+	"dir": "ltr",
 	"icons": [
 		{
 			"src": "/alfabetoj/favicon-96x96.png",
 			"sizes": "96x96",
-			"type": "image/png",
-			"density": "2.0"
+			"type": "image/png"
 		},
 		{
 			"src": "/alfabetoj/android-icon-144x144.png",
 			"sizes": "144x144",
-			"type": "image/png",
-			"density": "3.0"
+			"type": "image/png"
 		}
-	],
-	"start_url": "./index.html",
-	"background_color": "#F8F9FA",
-	"display": "standalone",
-	"scope": "/alfabetoj/",
-	"theme_color": "#F8F9FA",
-	"dir": "ltr",
-	"description": "Esperanto alphabet converter"
+	]
 }

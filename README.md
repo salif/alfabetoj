@@ -4,11 +4,11 @@ A tool for transliterating Esperanto text into other alphabets
 
 ## Links
 
-* Homepage: [salif.github.io/alfabetoj](https://salif.github.io/alfabetoj/)
-* Source code: [Github](https://github.com/salif/alfabetoj), [Codeberg](https://codeberg.org/salif/alfabetoj)
-* Issues: [Github](https://github.com/salif/alfabetoj/issues), [Codeberg](https://codeberg.org/salif/alfabetoj/issues)
-* Discuss: [Github](https://github.com/salif/alfabetoj/discussions)
-* [Matrix Chat](https://matrix.to/#/#salif-alfabetoj:mozilla.org): #salif-alfabetoj:mozilla.org
+* [Homepage](https://salif.github.io/alfabetoj/)
+* [Source code](https://codeberg.org/salif/alfabetoj)
+* [Issue tracker](https://codeberg.org/salif/alfabetoj/issues)
+* [Discuss](https://github.com/salif/alfabetoj/discussions)
+* [Matrix Chat](https://matrix.to/#/#salif-alfabetoj:mozilla.org)
 
 ## Contributing
 
@@ -28,4 +28,4 @@ I accept pull requests at Github and Codeberg.
 
 ## License
 
-See [LICENSE](./LICENSE).
+See [LICENSE.txt](./LICENSE.txt).
