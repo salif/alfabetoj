@@ -2,21 +2,21 @@
 	"name": "Alfabetoj",
 	"short_name": "alfabetoj",
 	"id": "alfabetoj",
-	"description": "Esperanto alphabet converter",
+	"description": "Transskribi per alfabetoj",
 	"start_url": "./index.html",
-	"scope": "/alfabetoj/",
+	"scope": "https://salif.github.io/alfabetoj/",
 	"display": "standalone",
 	"background_color": "#F8F9FA",
 	"theme_color": "#F8F9FA",
 	"dir": "ltr",
 	"icons": [
 		{
-			"src": "/alfabetoj/favicon-96x96.png",
+			"src": "https://salif.github.io/alfabetoj/favicon-96x96.png",
 			"sizes": "96x96",
 			"type": "image/png"
 		},
 		{
-			"src": "/alfabetoj/android-icon-144x144.png",
+			"src": "https://salif.github.io/alfabetoj/android-icon-144x144.png",
 			"sizes": "144x144",
 			"type": "image/png"
 		}

@@ -5,6 +5,7 @@ A tool for transliterating Esperanto text into other alphabets
 ## Links
 
 * [Homepage](https://salif.github.io/alfabetoj/)
+* [Homepage 2](https://salif.github.io/alfabetoj/app.html)
 * [Source code](https://codeberg.org/salif/alfabetoj)
 * [Issue tracker](https://codeberg.org/salif/alfabetoj/issues)
 * [Discuss](https://github.com/salif/alfabetoj/discussions)

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="eo">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Transskribi per alfabetoj</title>
+	<meta property="og:title" content="Transskribi per alfabetoj" />
+	<meta name="author" content="Salif Mehmed" />
+	<meta name="robots" content="index, follow" />
+	<meta name="description" content="Ilo por transskribi Esperanton per multaj alfabetoj" />
+	<meta property="og:description" content="Ilo por transskribi Esperanton per multaj alfabetoj" />
+	<link rel="canonical" href="https://salif.github.io/alfabetoj/" />
+	<meta property="og:url" content="https://salif.github.io/alfabetoj/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://salif.github.io/alfabetoj/android-icon-144x144.png" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+	<!-- <link rel="manifest" href="manifest.json" /> -->
+	<script data-goatcounter="https://sgi.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+	<script src="./i18n.js"></script>
+	<script src="./konvertilo.js"></script>
+</head>
+
+<body class="bg-body-tertiary">
+	<!-- Vue App Mount Point -->
+	<div id="app" class="container mb-5" v-cloak>
+		<header class="p-4">
+			<h3 class="mb-0">{{ t.title }}</h3>
+		</header>
+		<!-- Conversion Type Selection -->
+		<div class="mb-3">
+			<div class="row gx-2 gy-2">
+				<!-- We iterate through options in pairs to create the button groups -->
+				<template v-for="(option, index) in conversionOptions" :key="option.id">
+					<div v-if="index % 2 === 0" class="col-auto">
+						<div class="btn-group" role="group" :aria-label="t.conversionGroupAria">
+							<!-- First button in pair -->
+							<input type="radio" class="btn-check" :id="'conv_' + index" :value="option.id"
+								v-model="selectedConversionId" autocomplete="off">
+							<label class="btn btn-outline-success" :for="'conv_' + index">{{ t[option.labelKey]
+								}}</label>
+							<!-- Second button in pair (if it exists) -->
+							<template v-if="conversionOptions[index + 1]">
+								<input type="radio" class="btn-check" :id="'conv_' + (index + 1)"
+									:value="conversionOptions[index + 1].id" v-model="selectedConversionId"
+									autocomplete="off">
+								<label class="btn btn-outline-success" :for="'conv_' + (index + 1)">{{
+									t[conversionOptions[index + 1].labelKey] }}</label>
+							</template>
+						</div>
+					</div>
+				</template>
+			</div>
+		</div>
+		<!-- Input Area -->
+		<div class="mb-3">
+			<textarea class="form-control" rows="10" :placeholder="t.inputPlaceholder" v-model="inputText"></textarea>
+		</div>
+		<!-- Output Area -->
+		<div class="mb-3">
+			<textarea class="form-control" rows="10" :placeholder="t.outputPlaceholder" :value="outputText"
+				readonly></textarea>
+		</div>
+		<!-- Controls -->
+		<div class="d-flex align-items-center flex-wrap gap-2">
+			<!-- Language Selector -->
+			<select class="form-select" style="width: auto;" v-model="uiLanguage" :aria-label="t.languageSelectorAria">
+				<option v-for="lang in availableUiLanguages" :key="lang" :value="lang">{{ lang.toUpperCase() }}</option>
+			</select>
+			<button type="button" class="btn btn-danger" @click="clearText">{{ t.clearButton }}</button>
+			<button type="button" class="btn btn-primary" @click="showLetterMappings">{{ t.lettersButton }}</button>
+			<a href="https://codeberg.org/salif/alfabetoj" target="_blank" class="btn btn-secondary">{{ t.codeButton
+				}}</a>
+		</div>
+	</div>
+	<noscript>
+		<div class="container fw-bold">This page requires JavaScript to work properly.</div>
+	</noscript>
+	<style>
+		/* Prevents un-styled content from flashing before Vue mounts */
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+	<script>
+		Vue.createApp({
+			// --- 1. State Management (`data`) ---
+			data() {
+				return {
+					inputText: '',
+					uiLanguage: 'en', // 'en', 'eo', 'bg'
+					selectedConversionId: 'eo_cyrillic', // Default conversion
+					availableUiLanguages: ['en', 'eo', 'bg'],
+					conversionOptions: [
+						{ id: 'eo_cyrillic', labelKey: 'conv_eo_cyrillic', map: konvertilo.skribsistemoj.cyrillic.from_esperanto, useReplaceAll: false },
+						{ id: 'cyrillic_eo', labelKey: 'conv_cyrillic_eo', map: konvertilo.skribsistemoj.cyrillic.to_esperanto, useReplaceAll: false },
+						{ id: 'eo_shavian', labelKey: 'conv_eo_shavian', map: konvertilo.skribsistemoj.shavian.from_esperanto, useReplaceAll: false },
+						{ id: 'shavian_eo', labelKey: 'conv_shavian_eo', map: konvertilo.skribsistemoj.shavian.to_esperanto, useReplaceAll: true },
+						{ id: 'eo_xsystem', labelKey: 'conv_eo_xsystem', map: konvertilo.skribsistemoj.x_system.from_esperanto, useReplaceAll: false },
+						{ id: 'xsystem_eo', labelKey: 'conv_xsystem_eo', map: konvertilo.skribsistemoj.x_system.to_esperanto, useReplaceAll: true },
+						{ id: 'eo_arabic', labelKey: 'conv_eo_arabic', map: konvertilo.skribsistemoj.arabic.from_esperanto, useReplaceAll: false },
+						{ id: 'arabic_eo', labelKey: 'conv_arabic_eo', map: konvertilo.skribsistemoj.arabic.to_esperanto, useReplaceAll: true },
+						{ id: 'eo_georgian', labelKey: 'conv_eo_georgian', map: konvertilo.skribsistemoj.georgian.from_esperanto, useReplaceAll: false },
+						{ id: 'georgian_eo', labelKey: 'conv_georgian_eo', map: konvertilo.skribsistemoj.georgian.to_esperanto, useReplaceAll: false },
+						{ id: 'eo_armenian', labelKey: 'conv_eo_armenian', map: konvertilo.skribsistemoj.armenian.from_esperanto, useReplaceAll: false },
+						{ id: 'armenian_eo', labelKey: 'conv_armenian_eo', map: konvertilo.skribsistemoj.armenian.to_esperanto, useReplaceAll: false },
+						{ id: 'eo_cyrillic2', labelKey: 'conv_eo_cyrillic2', map: konvertilo.skribsistemoj.cyrillic_2.from_esperanto, useReplaceAll: false },
+						{ id: 'cyrillic2_eo', labelKey: 'conv_cyrillic2_eo', map: konvertilo.skribsistemoj.cyrillic_2.to_esperanto, useReplaceAll: false },
+					]
+				}
+			},
+
+			// --- 2. Derived Data (`computed`) ---
+			computed: {
+				// Returns the currently active conversion object
+				activeConversion() {
+					return this.conversionOptions.find(opt => opt.id === this.selectedConversionId) || this.conversionOptions[0];
+				},
+
+				// Calculates the output text reactively
+				outputText() {
+					if (!this.inputText) return '';
+					if (!this.activeConversion) return this.inputText; // Fallback
+
+					const str = this.inputText;
+					const map = this.activeConversion.map;
+
+					if (this.activeConversion.useReplaceAll) {
+						// Use replaceAll for multi-character substitutions (like x-system)
+						let output = str;
+						// Sort keys by length descending to match longer keys first (e.g., 'CX' before 'C')
+						const sortedKeys = Object.keys(map).sort((a, b) => b.length - a.length);
+						for (const key of sortedKeys) {
+							output = output.replaceAll(key, map[key]);
+						}
+						return output;
+					} else {
+						// Character-by-character replacement
+						return [...str].map(char => map[char] || char).join('');
+					}
+				},
+
+				// Provides localized strings for the template, making it cleaner
+				t() {
+					return localizationData[this.uiLanguage] || localizationData.en;
+				}
+			},
+
+			// --- 3. Methods for Actions (`methods`) ---
+			methods: {
+				clearText() {
+					this.inputText = '';
+					this.$refs.inputArea?.focus();
+				},
+				showLetterMappings() {
+					const map = this.activeConversion.map;
+					// We show this "temporary" result in the output box
+					this.inputText = Object.entries(map)
+						.map(([key, value]) => `${key} → ${value}`)
+						.join(';   ');
+				},
+				// --- Client-Side Routing ---
+				updateUrl() {
+					const text = this.inputText ? `/${encodeURIComponent(this.inputText)}` : '';
+					const newHash = `#/${this.selectedConversionId}${text}`;
+					// Use replaceState to avoid cluttering browser history on every keystroke
+					history.replaceState(null, '', newHash);
+				},
+				parseUrl() {
+					const hash = window.location.hash.slice(2); // Remove '#/'
+					if (!hash) {
+						this.updateUrl(); // Set a default URL on first load
+						return;
+					}
+
+					// The rest parameter `...textParts` robustly handles cases where input text might contain '/'.
+					const [convId, ...textParts] = hash.split('/');
+					const text = decodeURIComponent(textParts.join('/'));
+
+					// Validate and set conversion ID
+					if (convId && this.conversionOptions.some(opt => opt.id === convId)) {
+						this.selectedConversionId = convId;
+					}
+
+					// Set input text
+					this.inputText = text || '';
+				},
+				// --- Language Initialization ---
+				loadLanguagePreference() {
+					const userLangs = navigator.languages || [navigator.language];
+					for (const lang of userLangs) {
+						const baseLang = lang.split('-')[0];
+						if (this.availableUiLanguages.includes(baseLang)) {
+							this.uiLanguage = baseLang;
+							return; // Found a match
+						}
+					}
+					this.uiLanguage = 'eo'; // Default fallback
+				}
+			},
+
+			// --- 4. Reacting to State Changes (`watch`) ---
+			watch: {
+				uiLanguage(newLang) {
+					document.documentElement.lang = newLang;
+					document.title = this.t.title;
+				},
+				selectedConversionId() { this.updateUrl(); },
+				inputText() { this.updateUrl(); }
+			},
+
+			// --- 5. Lifecycle Hooks ---
+			created() {
+				this.loadLanguagePreference();
+				// When the app is first created, parse the URL to set the initial state.
+				this.parseUrl();
+				// Listen for back/forward button clicks.
+				window.addEventListener('hashchange', this.parseUrl);
+			},
+			beforeUnmount() {
+				// Clean up the event listener when the app is destroyed.
+				window.removeEventListener('hashchange', this.parseUrl);
+			},
+
+		}).mount('#app');
+
+	</script>
+</body>
+
+</html>

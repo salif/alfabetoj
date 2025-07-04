@@ -1,4 +1,4 @@
-var str_lcl_lang = "en"
+var str_lcl_lang = "eo"
 var strs_lcl_langs = ["en", "eo", "bg"]
 
 var objs_options_convert = [
@@ -132,8 +132,12 @@ function check_lcl() {
 }
 
 function load_page() {
-
 	try {
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			document.documentElement.setAttribute("data-bs-theme", "dark")
+		} else {
+			document.documentElement.setAttribute("data-bs-theme", "light")
+		}
 		var obj_lcl_c = check_lcl()
 		if (obj_lcl_c.is_yes) {
 			lcl_page(obj_lcl_c.str_lang)
@@ -180,7 +184,8 @@ function build_page() {
 		}
 
 		var el_lang_label = document.createElement("label")
-		el_lang_label.classList.add("btn", "btn-outline-success")
+		el_lang_label.classList.add("btn",
+			document.documentElement.dataset.bsTheme === "dark" ? "btn-outline-warning" : "btn-outline-success")
 		el_lang_label.htmlFor = el_lang.id
 		el_lang_label.textContent = _i(obj.l)
 
@@ -293,4 +298,4 @@ function build_page() {
 	}
 }
 
-document.body.onload = load_page
+document.addEventListener("DOMContentLoaded", () => load_page())
